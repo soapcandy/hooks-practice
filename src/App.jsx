@@ -1,23 +1,12 @@
-import { useState } from "react";
-import useResize from "./hooks/useResize/useResize";
+import useLocalStorage from "./hooks/useLocalStorage/useLocalStorage";
 
 function App() {
-  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const ref = useResize((rect) => {
-    setImageSize({ width: rect.width, height: rect.height });
-  });
+  const [status, setStatus] = useLocalStorage("status", "404 NOT FOUND");
 
   return (
-    <div
-      ref={ref}
-      style={{ width: "100px", height: "100px", backgroundColor: "blue" }}
-    >
-      <div
-        width={imageSize.width}
-        height={imageSize.height}
-        src="https://picsum.photos/1000"
-        mode="contain"
-      ></div>
+    <div>
+      <button onClick={() => setStatus("200 OK")}>Resend</button>
+      {status}
     </div>
   );
 }
