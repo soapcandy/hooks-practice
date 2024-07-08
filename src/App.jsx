@@ -1,15 +1,35 @@
-import useHover from "./hooks/useHover";
+import useScroll from "./hooks/useScroll/useScroll";
 
 function App() {
-  const [ref, hover] = useHover();
+  const [ref, coord] = useScroll();
 
   return (
     <>
       <div
-        style={{ width: "100px", height: "100px", backgroundColor: "red" }}
+        style={{
+          width: "100px",
+          height: "100px",
+          backgroundColor: "red",
+          overflow: "auto",
+        }}
         ref={ref}
-      />
-      {hover ? <div>ToolTip!!</div> : null}
+      >
+        <div
+          style={{
+            width: "10000px",
+            height: "10000px",
+            backgroundImage: "linear-gradient(180deg, #000 0%, #fff 100%)",
+          }}
+        ></div>
+      </div>
+      <button
+        onClick={() => {
+          ref.current.scrollTo({ top: 20000, left: 20000, behavior: "smooth" });
+        }}
+      >
+        scroll
+      </button>
+      {coord.x}, {coord.y}
     </>
   );
 }
