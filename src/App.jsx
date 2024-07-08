@@ -1,15 +1,9 @@
-import useKey from "./hooks/useKey/useKey";
+import useKeyPress from "./hooks/useKey/usekeyPress";
 
 function App() {
-  useKey("keydown", "f", () => {
-    alert("f key down");
-  });
+  const pressed = useKeyPress("?");
 
-  useKey("keyup", "q", () => {
-    alert("q key up");
-  });
-
-  return <>f와 q를 눌러보세요</>;
+  return <>{pressed ? "아이린 조 아" : "물음표를 눌러보세요"}</>;
 }
 
 export default App;
