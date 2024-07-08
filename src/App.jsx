@@ -1,13 +1,17 @@
-import useTimeout from "./hooks/useTimeOut/useTimeOut";
+import { useState } from "react";
+import useIntervalFn from "./hooks/useInterval/useIntervalFn";
 
 function App() {
-  const clear = useTimeout(() => {
-    alert("launch");
-  }, 3000);
+  const [array, setArray] = useState([]);
+  const [run, clear] = useIntervalFn(() => {
+    setArray([...array, "추가됨!"]);
+  }, 1000);
 
   return (
     <>
-      <div>useTimeOut 테스트</div>
+      <div>useIntervalFn 테스트</div>
+      <div>{array}</div>
+      <button onClick={run}>1초 마다 추가</button>
       <button onClick={clear}>정지</button>
     </>
   );
