@@ -1,13 +1,13 @@
-import useTimeOutFn from "./hooks/useTimeOut/useTimeOutFn";
+import useTimeout from "./hooks/useTimeOut/useTimeOut";
 
 function App() {
-  const [run, clear] = useTimeOutFn(() => {
+  const clear = useTimeout(() => {
     alert("launch");
   }, 3000);
+
   return (
     <>
-      <div>useTimeOutFn 테스트</div>
-      <button onClick={run}>3초 뒤 실행</button>
+      <div>useTimeOut 테스트</div>
       <button onClick={clear}>정지</button>
     </>
   );
