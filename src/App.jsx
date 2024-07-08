@@ -1,17 +1,16 @@
 import { useState } from "react";
-import useIntervalFn from "./hooks/useInterval/useIntervalFn";
+import useInterval from "./hooks/useInterval/useInterval";
 
 function App() {
   const [array, setArray] = useState([]);
-  const [run, clear] = useIntervalFn(() => {
+  const clear = useInterval(() => {
     setArray([...array, "추가됨!"]);
   }, 1000);
 
   return (
     <>
-      <div>useIntervalFn 테스트</div>
+      <div>useInterval 테스트</div>
       <div>{array}</div>
-      <button onClick={run}>1초 마다 추가</button>
       <button onClick={clear}>정지</button>
     </>
   );
