@@ -1,27 +1,23 @@
 import { useState } from "react";
-import useClickAway from "./hooks/useClickAway/useClickAway";
+import useResize from "./hooks/useResize/useResize";
 
 function App() {
-  const [show, setShow] = useState(false);
-  const ref = useClickAway((e) => {
-    if (e.target.tagName !== "BUTTON") setShow(false);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const ref = useResize((rect) => {
+    setImageSize({ width: rect.width, height: rect.height });
   });
 
   return (
-    <div>
-      <button onClick={() => setShow(true)}>Show</button>
+    <div
+      ref={ref}
+      style={{ width: "100px", height: "100px", backgroundColor: "blue" }}
+    >
       <div
-        ref={ref}
-        style={{
-          display: show ? "block" : "none",
-          width: "200px",
-          height: "200px",
-          border: "2px solid black",
-          backgroundColor: "#eee",
-        }}
-      >
-        박스 바깥을 눌러봐요!
-      </div>
+        width={imageSize.width}
+        height={imageSize.height}
+        src="https://picsum.photos/1000"
+        mode="contain"
+      ></div>
     </div>
   );
 }
