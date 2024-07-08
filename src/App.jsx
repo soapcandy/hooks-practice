@@ -1,4 +1,4 @@
-import useAsyncFn from "./hooks/useAsync/useAsyncFn";
+import useAsync from "./hooks/useAsync/useAsync";
 
 const asyncReturnValue = () => {
   return new Promise((resolve) => {
@@ -16,37 +16,32 @@ const asyncReturnError = () => {
   });
 };
 
-const Success = () => {
-  const [state, callback] = useAsyncFn(async () => {
+export const Success = () => {
+  const state = useAsync(async () => {
     return await asyncReturnValue();
   }, []);
 
   return (
     <div>
-      <div>useAsyncFn 테스트</div>
+      <div>useAsync 테스트</div>
       <div>{JSON.stringify(state)}</div>
-      <button onClick={callback} disabled={state.isLoading}>
-        비동기 호출
-      </button>
     </div>
   );
 };
 
-const Error = () => {
-  const [state, callback] = useAsyncFn(async () => {
+export const Error = () => {
+  const state = useAsync(async () => {
     return await asyncReturnError();
   }, []);
 
   return (
     <div>
-      <div>useAsyncFn 테스트</div>
+      <div>useAsync 테스트</div>
       <div>{JSON.stringify(state)}</div>
-      <button onClick={callback} disabled={state.isLoading}>
-        비동기 호출
-      </button>
     </div>
   );
 };
+
 function App() {
   return (
     <div>
