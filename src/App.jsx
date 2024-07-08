@@ -1,7 +1,7 @@
-import useLocalStorage from "./hooks/useLocalStorage/useLocalStorage";
+import useSessionStorage from "./hooks/useSessionStorage/useSessionStorage";
 
 function App() {
-  const [status, setStatus] = useLocalStorage("status", "404 NOT FOUND");
+  const [status, setStatus] = useSessionStorage("status", "404 NOT FOUND");
 
   return (
     <div>
